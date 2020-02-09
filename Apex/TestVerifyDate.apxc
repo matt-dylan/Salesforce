@@ -1,0 +1,19 @@
+// Dylan Whitlock 1/20/2020
+@isTest
+public class TestVerifyDate {
+	
+    @isTest static void testDateWithin30Days() {
+        Date testDate = Date.newInstance(2020, 12, 10);
+        Date testDate2 = Date.newInstance(2020, 12, 20);
+        Date checkedDate = VerifyDate.CheckDates(testDate, testDate2);
+        System.assertEquals(testDate2, checkedDate);
+    }
+    
+    @isTest static void testSetEndOfMonthDate() {
+        Date testDate = Date.newInstance(2020, 12, 10);
+        Date outsideDate = Date.newInstance(2020, 1, 10);
+        Date lastDate = Date.newInstance(2020, 12, 31);
+        Date checkedDate = VerifyDate.CheckDates(testDate, outsideDate);
+        System.assertEquals(lastDate, checkedDate);
+    }
+}
