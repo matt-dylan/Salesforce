@@ -1,0 +1,19 @@
+@isTest
+public class AccountTriggerTest {
+    @isTest static void testAccountBillingMatch() {
+        List<Account> accts = new List<Account>();
+        for(Integer i=0;i<200;i++){
+            Account newAcc = new Account();
+            newAcc.Name = 'Test Account ' + i;
+            newAcc.BillingState = 'CA';
+            accts.add(newAcc);
+        }
+        
+        Test.startTest();
+        insert accts;
+        Test.stopTest();
+        
+        List<Account> verifyAccts = [SELECT Id, Name FROM Account WHERE ShippingState='CA'];
+        System.assertEquals(200, verifyAccts.size());
+    }
+}
